@@ -4,7 +4,7 @@ error_reporting(0);
 /**
  * GitHub Post-Receive Deployment Hook.
  * 
- * @author Chin Lee <kwangchin@gmail.com>
+ * @author Chin Lee <kwangchin@gmail.com>, modified by Nathan Bingham <nathan@bamads.com>
  * @copyright Copyright (C) 2012 Chin Lee
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  * @version 1.0

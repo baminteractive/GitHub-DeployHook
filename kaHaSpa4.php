@@ -11,8 +11,9 @@ ini_set('safe_mode', '0');
 // Initiate the GitHub Deployment Hook; Passing true to enable debugging
 $hook = new GitHubHook(true);
 
-// Adding `stage` branch to deploy for `staging` to path `/var/www/testhook/stage`
-$hook->addBranch('master', 'staging', '/var/www/vhosts/bamads.com/subdomains/bam/httpdocs/interactive/xbox');
+// TODO: Update branch names and path to files
+// Adding `develop` branch to deploy for `staging` to path `/path/to/directory/`
+$hook->addBranch('staging', 'staging', '/path/to/directory/');
 
 // Deploy the commits
 $hook->deploy();

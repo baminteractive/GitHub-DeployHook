@@ -15,9 +15,11 @@ Deploying applications to development, staging and production never been so easy
 **Update GitHub**
 
 1. Go to your `GitHub repo` &gt; `Admin` &gt; `Teams` &gt;, select `Machines` from the list of Teams and add it to the respository. This will give the server access to the repository.
+![GitHub Post-Receive URLs](https://f5lkwq.bay.livefilestore.com/y1p7tJr8VAaD_chqKUknYviy3yX_0rm9acxsVXWtqp0WJGh4PXhqOemSHCdHrrgtMyXJxM-ntcUJN8MzdOaa31_SKoSm9Vm0EK0/GitHubHook-02.png?psid=1)
+
 2. Go to your `GitHub repo` &gt; `Admin` &gt; `Service Hooks`, select `Post-Receive URLS` and enter your hook URL like this:
 
-![GitHub Post-Receive URLs](http://s3.kcblog.net/images/GitHubHook-01.png)
+![GitHub Post-Receive URLs](https://5b0jhw.bay.livefilestore.com/y1pb86BIwXjVqL1QEyRA8TnrxiPKGWjPT25oyuWgpHeQh2mH22J5Y42KLGpCr4-tEJK2Ld9u6Tk8zMw57upRFTfBx05tUy9SoMA/GitHubHook-01.png?psid=1)
 
 **Prepare the server**
 
@@ -26,8 +28,16 @@ Deploying applications to development, staging and production never been so easy
 3. Clone the repo onto the server. `git clone git@github.com:baminteractive/path-to-your-repo.git`
 4. Delete the directory your files will be served from and rename the cloned directory the same as the directory your deleted. `mv path/to/cloned/directory path/to/http/directory`
 5. Make sure to switch to the branch you're wanting to auto-deploy if it's not there already. Use `git fetch` to pull down the branches from the remote server. 
-6. Set git repo directory to 755 `chmod -R 755 path/to/directory`
-7. Set the `apache` user as the owner so the server is allowed to refresh the repo `chown -R apache:apache httpdocs`
+6. Set git repo directory permissions to 755 `chmod -R 755 path/to/directory`. Set any other directory permissions that are required for the site to function.
+7. Set the `apache` user as the owner of all files in the directory so the server is allowed to refresh the repo `chown -R apache:apache httpdocs`
+8. Deploy to the desired branch and it should update.
+
+**Update your repositories .gitignore**
+1. Add the line below to your .gitignore to make sure that the 
+
+### Debugging
+
+If you're having issues with the deploy process, the result of each deploy is logged into the ```/log/hook.log``` file.
 
 ### How It Works
 
@@ -56,13 +66,11 @@ $hook-&gt;addBranch('prod', 'production', '/var/www/prod', array('user@gmail.com
 $hook-&gt;deploy();
 </code></pre>
 
-In this example, we enabled the debug log for messages with timestamp. You can disable this by commenting or removing the line `$hook->enableDebug()`
+In the above, we enabled the debug log for messages with timestamp. You can disable this by commenting or removing the line `$hook->enableDebug()`
 
 We have a staging site and a production site in this example. You can add more branches easily with `$hook->addBranch()` method if you have more systems to deploy.
 
 We then use `$hook->deploy()` to deploy the systems.
-
-## 
 
 ### Security
 
