@@ -32,9 +32,6 @@ Deploying applications to development, staging and production never been so easy
 7. Set the `apache` user as the owner of all files in the directory so the server is allowed to refresh the repo `chown -R apache:apache httpdocs`
 8. Deploy to the desired branch and it should update.
 
-**Update your repositories .gitignore**
-1. Add the line below to your .gitignore to make sure that the 
-
 ### Debugging
 
 If you're having issues with the deploy process, the result of each deploy is logged into the ```/log/hook.log``` file.
